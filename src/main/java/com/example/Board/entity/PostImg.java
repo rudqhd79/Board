@@ -13,22 +13,26 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@Table(name="post")
 @Getter
 @Setter
+@Table(name="postImg")
 @ToString
-public class Post {
+@Entity
+public class PostImg {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="postImgId")
 	private Long id;
-
-	@ManyToOne (fetch = FetchType.LAZY)
-	@JoinColumn(name="boardNo")
-	private Board board;
 	
-	@Column(length = 5000)
-	private String postDetail;
+	@JoinColumn(name="postId")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Post post;
+	
+	private String postImgOriginalName;
+	
+	private String postImgLocation;
+	
+	private String postImgName;
 	
 }

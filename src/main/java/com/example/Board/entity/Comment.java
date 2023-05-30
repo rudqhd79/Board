@@ -8,27 +8,33 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="post")
 @Getter
 @Setter
 @ToString
-public class Post {
-
+@Table(name="comment")
+public class Comment extends DateEntity {
+	
 	@Id
+	@Column(name="commentId")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	@ManyToOne (fetch = FetchType.LAZY)
-	@JoinColumn(name="boardNo")
-	private Board board;
 	
-	@Column(length = 5000)
-	private String postDetail;
+	@JoinColumn(name="memberId")
+	@OneToMany(fetch = FetchType.LAZY)
+	private Member member;
+	
+	@JoinColumn(name = "postId")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Post post;
+	
+	@Column(length = 2000)
+	private String commentDetail;
 	
 }
