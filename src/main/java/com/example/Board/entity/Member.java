@@ -1,6 +1,10 @@
 package com.example.Board.entity;
 
+import org.hibernate.bytecode.internal.bytebuddy.PassThroughInterceptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.example.Board.constant.Role;
+import com.example.Board.dto.MemberDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +32,7 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(length = 25, nullable = false, unique = true)
+	@Column(length = 25, nullable = false)
 	private String memberName;
 	
 	@Column(length = 50, nullable = false, unique = true)
@@ -37,14 +41,14 @@ public class Member {
 	@Column(nullable = false)
 	private String password;
 	
-	@Column (nullable = false, length = 25)
+	@Column (nullable = false, length = 25, unique = true)
 	private String memberId;
 	
 	@Column (nullable = false, length = 50)
 	private String email;
 	
-	@Column (nullable = false, length = 13)
-	private String memberNumber;
+	@Column (nullable = false, length = 13, unique = true)
+	private String phoneNumber;
 
 	//	권한 (유저, 관리자)
 	@Enumerated (EnumType.STRING)
@@ -57,5 +61,22 @@ public class Member {
 	//프로필 식별자 (한명의 회원은 여러개의 프로필이미지를 갖는다)
 	@OneToMany
 	private Profile profile;
-
+	
+	public static Member createMember (MemberDto memberDto, PasswordEncoder passwordEncoder, Role role, Hint hint, Profile profile) {
+		Member member = new Member();
+		member.setMemberId(memberDto.getMemberId());
+		member.setMemberName(memberDto.getMemberName());
+		member.setMemberNickName(memberDto.getMemberNickName());
+		member.setPhoneNumber(memberDto.getPhoneNumber());
+		member.setEmail(memberDto.getEmail());
+		member.setHint(hint);
+		member.setProfile(profile);
+		member.setRole(role);
+		
+		String password = passwordEncoder.encode(memberDto.getPassword());
+		member.setPassword(password);
+		
+		return member;
+	}
+	
 }
