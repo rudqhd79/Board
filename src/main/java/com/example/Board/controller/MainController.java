@@ -1,0 +1,18 @@
+package com.example.Board.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor	// 필드나 final 변수들의 생성자를 자동으로 생성해주는 어노테이션이다
+@RequestMapping(value = "/")	// 경로의 기본값 설정
+public class MainController {
+	
+	@GetMapping(value = "")
+	public String mainPage() {
+		return "main";
+	}
+}

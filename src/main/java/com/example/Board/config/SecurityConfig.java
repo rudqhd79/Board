@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration	// Bean을 사용하기 위해 설정 (싱글톤)
+@Configuration	// @Configuraion은 설정 파일, Bean을 사용하기 위해 설정 (싱글톤)
 @EnableWebSecurity	// 스프링 시큐리티에서 FilterChain이 자동으로 포함됨
 public class SecurityConfig {
 	
