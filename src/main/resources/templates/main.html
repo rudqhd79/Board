@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{layout}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>BOARD</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<!-- 게시판 테두리 영역 -->
+		<div>
+			<div>
+				<div>제목</div>
+				<div>작성자</div>
+				<div>게시일</div>
+				<div>수정일</div>
+				<div>조회수</div>
+			</div>
+			<!-- 게시글 영역 -->
+			<div>
+				<div></div>
+			</div>
+		</div>
+		<!-- 버튼 영역 -->
+		<div>
+			<div>
+				<a><img src="../static/image/leftBTN.png" /></a>
+			</div>
+			<div>1</div>
+			<div>
+				<a><img src="../static/image/leftBTN.png" /></a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

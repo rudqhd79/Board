@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -27,14 +28,16 @@ public class Comment extends DateEntity {
 	private Long id;
 	
 	@JoinColumn(name="memberId")
-	@OneToMany(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Member member;
 	
 	@JoinColumn(name = "postId")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Post post;
 	
-	@Column(length = 2000)
+	@Column(nullable = false, columnDefinition = "LONGTEXT")
 	private String commentDetail;
+	
+	
 	
 }

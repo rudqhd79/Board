@@ -1,5 +1,8 @@
 package com.example.Board.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.bytecode.internal.bytebuddy.PassThroughInterceptor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -13,6 +16,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -28,7 +32,7 @@ import lombok.ToString;
 public class Member {
 	
 	@Id
-	@Column(name = "memberId")
+	@Column(insertable = false, updatable = false ,name = "memberId")	// 중복방지
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
@@ -42,7 +46,7 @@ public class Member {
 	private String password;
 	
 	@Column (nullable = false, length = 25, unique = true)
-	private String memberId;
+	private String userId;
 	
 	@Column (nullable = false, length = 50)
 	private String email;
@@ -54,17 +58,17 @@ public class Member {
 	@Enumerated (EnumType.STRING)
 	private Role role;
 	
-//	힌트 식별자
+	//	힌트 식별자
 	@OneToOne
 	private Hint hint;
 	
 	//프로필 식별자 (한명의 회원은 여러개의 프로필이미지를 갖는다)
 	@OneToMany
-	private Profile profile;
+	private List<Profile> profile = new ArrayList<>();
 	
-	public static Member createMember (MemberDto memberDto, PasswordEncoder passwordEncoder, Role role, Hint hint, Profile profile) {
+	public static Member createMember (MemberDto memberDto, PasswordEncoder passwordEncoder, Role role, Hint hint, List<Profile> profile) {
 		Member member = new Member();
-		member.setMemberId(memberDto.getMemberId());
+		member.setUserId(memberDto.getUserId());
 		member.setMemberName(memberDto.getMemberName());
 		member.setMemberNickName(memberDto.getMemberNickName());
 		member.setPhoneNumber(memberDto.getPhoneNumber());

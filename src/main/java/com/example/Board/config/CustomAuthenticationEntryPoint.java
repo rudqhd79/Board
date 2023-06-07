@@ -19,7 +19,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
 		
 		// Redirect처럼 경로를 무조건 /main으로 보냄
-		response.sendRedirect("/main");
+		/* response.sendRedirect("/main"); */
 	}
 
 }

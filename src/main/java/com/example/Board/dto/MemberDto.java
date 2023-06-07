@@ -35,7 +35,7 @@ public class MemberDto {
 	private String password;
 	
 	@NotEmpty(message = "아이디를 입력해주세요.")
-	private String memberId;
+	private String userId;
 	
 	@NotEmpty(message = "전화번호를 입력해주세요.")
 	@Length(min = 13, max = 13, message = "-포합 13자리를 입력해주세요.")

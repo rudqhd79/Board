@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.Board.service.MemberService;
+
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -11,7 +13,9 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(value = "/")	// 경로의 기본값 설정
 public class MainController {
 	
-	@GetMapping(value = "")
+	private final MemberService memberService;
+	
+	@GetMapping(value = "main")
 	public String mainPage() {
 		return "main";
 	}
