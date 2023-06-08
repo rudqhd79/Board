@@ -57,7 +57,6 @@ public class MemberController {
 		} catch (Exception e) {
 			
 		}
-		
 		return "redirect:/main";
 	}
 	

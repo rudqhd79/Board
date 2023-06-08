@@ -16,10 +16,11 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 			AuthenticationException authException) throws IOException, ServletException {
 		
 		// 401에러 (에러 발생시키기)
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+		/* response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"); */
 		
 		// Redirect처럼 경로를 무조건 /main으로 보냄
 		/* response.sendRedirect("/main"); */
+		System.out.println("Redirect Please Stop");
 	}
 
 }

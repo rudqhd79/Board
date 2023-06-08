@@ -10,12 +10,11 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor	// 필드나 final 변수들의 생성자를 자동으로 생성해주는 어노테이션이다
-@RequestMapping(value = "/")	// 경로의 기본값 설정
 public class MainController {
 	
 	private final MemberService memberService;
 	
-	@GetMapping(value = "main")
+	@GetMapping(value = "/main")
 	public String mainPage() {
 		return "main";
 	}

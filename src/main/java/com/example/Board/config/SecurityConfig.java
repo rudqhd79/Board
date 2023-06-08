@@ -27,18 +27,18 @@ public class SecurityConfig {
 			formLogin()	// 로그인 부분 설정
 			.loginPage("/login")	//로그인 페이지 url 설정
 			.defaultSuccessUrl("/main")	  // 로그인 성공 시 url 설정
-			.failureUrl("/login/fail")	// 로그인 실패 시 url 설정
 			.usernameParameter("userId")	// 로그인 시 사용할 아이디의 entity 파라미터 설정
 			.passwordParameter("password")	// 로그인 시 사용할 비밀번호의 entity 파라미터 설정
+			.failureUrl("/login/fail")	// 로그인 실패 시 url 설정
 		.and()
 			.logout()	// 로그아웃 부분 설정
-			.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))	// 로그아웃 url
+			.logoutRequestMatcher(new AntPathRequestMatcher("/login/logout"))	// 로그아웃 url
 			.logoutSuccessUrl("/main");
 		
 		http
 			.authorizeHttpRequests()	// http를 이용하는 접근 설정
 			.requestMatchers("/css/**", "/js/**", "/image/**").permitAll()	// 모두 접근 가능
-			.requestMatchers("/login", "/join/**", "/login/**", "/join/**").permitAll()	// 모두 접근 가능
+			.requestMatchers("/login", "/join/**", "/login/**", "/join/**", "/main/**").permitAll()	// 모두 접근 가능
 			.requestMatchers("/member/**").hasAnyRole("USER")	// USER 권한을 가진 사람만 접근 가능
 			.requestMatchers("/admin/**").hasAnyRole("ADMIN")	// ADMIN 권한을 가진 사람만 접근 가능
 			.anyRequest().authenticated();	// 그 외 페이지들은 모두 로그인 인증을 거쳐야 접근 가능하다
