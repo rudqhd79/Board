@@ -1,4 +1,4 @@
-package com.example.Board;
+package com.Board;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
