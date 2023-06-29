@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ToString
-public class PostImg {
+public class PostImg extends RegistDate {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @ToString
 @Entity
-public class ProfileImg {
+public class ProfileImg extends RegistDate {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +25,15 @@ public class ProfileImg {
 	private Long id;	// 프로필 이미지 식별자
 	private String pro_ori_img_name;		// 원본 프로필 이미지 이름
 	private String pro_use_img_name;	// 사용할 프로필 이미지 이름
-	private String pro_path_img;			// 경로 프로필 이미지
+	private String pro_img_path;			// 경로 프로필 이미지
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="member_id")
 	private Member member;
+	
+	public void updateProfileImg(String pro_ori_img_name, String pro_use_img_name, String pro_img_path) {
+		this.pro_ori_img_name = pro_ori_img_name;
+		this.pro_use_img_name = pro_use_img_name;
+		this.pro_img_path = pro_img_path;
+	}
 }

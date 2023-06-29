@@ -9,26 +9,28 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.Board.constant.MemberRole;
+import com.Board.dto.MemberDto;
 
 @Entity
 @Getter
 @Setter
 @ToString
-public class Member {
+public class Member extends RegistDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "member_id")
     private Long id; // 회원 식별자
     private String name; // 회원 실명
-    private String nickName; // 회원 닉네임
+    private String nickName; // 회원 닉네임	(중복 방지)
     private String password; // 회원 로그인 비밀번호
     private String memberId; // 회원 로그인 아이디
     private String email; // 회원 이메일
@@ -51,4 +53,22 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Comment> comments;
 
+    // 회원 생성 메소드
+    public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder, MemberRole role) {
+    	Member member = new Member();
+    	member.setName(memberDto.getName());	// 회원 이름
+    	member.setNickName(memberDto.getNickName());	// 회원 닉네임
+    	member.setMemberId(memberDto.getMemberId());	// 회원 로그인 아이디
+    	member.setEmail(memberDto.getEmail());	// 회원 이메일
+    	member.setPhone(memberDto.getPhone());	// 회원 전화번호
+    	member.setHintA(memberDto.getHintA());	// 회원 전화번호
+    	member.setRole(role);	// 회원 권한 (권한은 페이지로 나누어 만든다)
+    	
+    	// 비밀번호 암호화
+    	String password = passwordEncoder.encode(memberDto.getPassword());
+    	member.setPassword(password);
+    	
+    	return member;
+    }
+    
 }

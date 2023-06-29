@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ToString
-public class Post {
+public class Post extends RegistDate {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

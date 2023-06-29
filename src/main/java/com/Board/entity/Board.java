@@ -2,6 +2,8 @@ package com.Board.entity;
 
 import java.util.List;
 
+import com.Board.dto.BoardDto;
+
 import groovy.transform.ToString;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,4 +37,8 @@ public class Board extends RegistDate {
 	
 	@OneToMany(mappedBy = "board")
 	private List<Post> posts;
+	
+	public void updateBoard (BoardDto boardDto) {
+		
+	}
 }
