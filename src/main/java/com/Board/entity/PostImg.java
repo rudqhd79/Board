@@ -1,7 +1,5 @@
 package com.Board.entity;
 
-import java.util.List;
-
 import groovy.transform.ToString;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,20 +17,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @ToString
-@Table(name="board")
-public class Board {
+@Table(name = "postImg")
+public class PostImg {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="board_id")
-	private Long id;
-	private String title;
-	private int views;
+	@Column(name="postImg_id")
+	private Long id;	// 게시글 식별자
+	private String post_ori_img_name;	// 원본 게시글 이미지 이름
+	private String post_use_img_name;	// 사용할 게시글 이미지 이름
+	private String post_path_img;			// 경로 게시글 이미지
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_id")
-	private Member member;
+	@JoinColumn(name = "post_id")
+	private Post post;
 	
-	@OneToMany(mappedBy = "board")
-	private List<Post> posts;
 }

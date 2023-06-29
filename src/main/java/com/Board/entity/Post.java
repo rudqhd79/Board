@@ -20,20 +20,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @ToString
-@Table(name="board")
-public class Board {
+@Table(name="post")
+public class Post {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="board_id")
+	@Column(name="post_id")
 	private Long id;
-	private String title;
-	private int views;
+	private String post_detail;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_id")
-	private Member member;
+	@JoinColumn(name = "board_id")
+	private Board board;
 	
-	@OneToMany(mappedBy = "board")
-	private List<Post> posts;
+	@OneToMany(mappedBy = "post")
+	private List<Comment> comments;
+
+	@OneToMany(mappedBy = "post")
+	private List<PostImg> postImgs;
 }

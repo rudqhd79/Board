@@ -40,6 +40,9 @@ public class Member {
     private List<ProfileImg> pro_imgs;
     
     @OneToMany(mappedBy = "member")
-    private List<Board> board;
+    private List<Board> boards;
+    
+    @OneToMany(mappedBy = "member")
+    private List<Comment> comments;
 
 }

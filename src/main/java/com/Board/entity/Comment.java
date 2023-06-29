@@ -1,7 +1,5 @@
 package com.Board.entity;
 
-import java.util.List;
-
 import groovy.transform.ToString;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,29 +9,28 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name="comment")
 @Getter
 @Setter
 @ToString
-@Table(name="board")
-public class Board {
-
+public class Comment {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="board_id")
+	@Column(name="comment_id")
 	private Long id;
-	private String title;
-	private int views;
-	
+	private String comment_detail;
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_id")
+	@JoinColumn(name="member_id")
 	private Member member;
 	
-	@OneToMany(mappedBy = "board")
-	private List<Post> posts;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="post_id")
+	private Post post;
 }
