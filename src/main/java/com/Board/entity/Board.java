@@ -21,14 +21,14 @@ import lombok.Setter;
 @Setter
 @ToString
 @Table(name="board")
-public class Board {
+public class Board extends RegistDate {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="board_id")
-	private Long id;
-	private String title;
-	private int views;
+	private Long id;		// 게시판 식별자
+	private String title;	// 게시글 제목
+	private int views;		// 게시글 조회수
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "member_id")

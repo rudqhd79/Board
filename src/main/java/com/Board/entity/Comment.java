@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ToString
-public class Comment {
+public class Comment extends RegistDate {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
