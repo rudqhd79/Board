@@ -3,6 +3,8 @@ package com.Board.entity;
 import groovy.transform.ToString;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,10 +15,11 @@ import lombok.Setter;
 
 import java.util.List;
 
+import com.Board.constant.MemberRole;
+
 @Entity
 @Getter
 @Setter
-@Table(name = "member")
 @ToString
 public class Member {
 
@@ -31,6 +34,9 @@ public class Member {
     private String email; // 회원 이메일
     private String phone; // 회원 전화번호
     private String hintA; // 회원 힌트에 대한 답변
+    
+    @Enumerated(EnumType.STRING)
+    private MemberRole role;	// 권한s
 
     // mappedBy는 해당 객체의 관계도 주인의 entity에 생성한다
     @OneToMany(mappedBy = "member")

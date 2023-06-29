@@ -16,7 +16,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @ToString
-@Table(name="profileImg")
 @Entity
 public class ProfileImg {
 

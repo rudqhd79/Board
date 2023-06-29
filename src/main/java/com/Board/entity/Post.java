@@ -20,7 +20,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @ToString
-@Table(name="post")
 public class Post {
 
 	@Id

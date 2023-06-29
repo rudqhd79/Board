@@ -17,7 +17,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @ToString
-@Table(name = "postImg")
 public class PostImg {
 
 	@Id

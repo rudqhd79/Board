@@ -20,7 +20,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @ToString
-@Table(name="board")
 public class Board extends RegistDate {
 
 	@Id

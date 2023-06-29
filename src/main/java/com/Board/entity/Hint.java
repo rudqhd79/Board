@@ -17,7 +17,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @ToString
-@Table(name= "hint")
 public class Hint {
 	
 	@Id
