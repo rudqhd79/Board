@@ -22,8 +22,8 @@ public class Comment extends RegistDate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="comment_id")
-	private Long id;
-	private String comment_detail;
+	private Long id;	// 댓글 식별자
+	private String comment_detail;	// 댓글 내용
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="member_id")

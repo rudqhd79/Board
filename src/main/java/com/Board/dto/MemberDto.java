@@ -35,7 +35,7 @@ public class MemberDto {
 	// - 영문 대문자 또는 소문자로 시작하는 아이디, 길이는 4 ~ 20자
 	@NotEmpty(message = "로그인 아이디를 입력해 주세요.")
 	@Pattern(regexp = "^[A-Za-z]{4, 20}", message = "아이디를 형식대로 입력해 주세요")
-	private String memberId;
+	private String loginId;
 	
 	// 이메일 \-\.(슬러시같은 내용들을 의미한다.), +(반복 얼마나 나오든) 
     // - 영문 대문자 또는 소문자 또는 숫자로 시작하고 @포함 .포함

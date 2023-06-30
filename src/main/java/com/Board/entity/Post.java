@@ -25,8 +25,8 @@ public class Post extends RegistDate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="post_id")
-	private Long id;
-	private String post_detail;
+	private Long id;	// 게시글 식별자
+	private String post_detail;	// 게시글 내용
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "board_id")

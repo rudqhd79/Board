@@ -30,19 +30,27 @@ public class Member extends RegistDate {
     @Column(name = "member_id")
     private Long id; // 회원 식별자
     private String name; // 회원 실명
-    private String nickName; // 회원 닉네임	(중복 방지)
     private String password; // 회원 로그인 비밀번호
-    private String memberId; // 회원 로그인 아이디
-    private String email; // 회원 이메일
-    private String phone; // 회원 전화번호
     private String hintA; // 회원 힌트에 대한 답변
+    
+    @Column(unique = true, nullable = false)
+    private String loginId; // 회원 로그인 아이디
+    
+    @Column(unique = true, nullable = true)
+    private String nickName; // 회원 닉네임	(중복 방지)
+    
+    @Column(unique = true, nullable = false)
+    private String email; // 회원 이메일
+    
+    @Column(unique = true, nullable = false)
+    private String phone; // 회원 전화번호
     
     @Enumerated(EnumType.STRING)
     private MemberRole role;	// 권한s
 
     // mappedBy는 해당 객체의 관계도 주인의 entity에 생성한다
     @OneToMany(mappedBy = "member")
-    private List<Hint> hints; // 회원의 힌트 리스트
+    private List<Hint> hints;
     
     @OneToMany(mappedBy = "member")
     private List<ProfileImg> pro_imgs;
@@ -58,7 +66,7 @@ public class Member extends RegistDate {
     	Member member = new Member();
     	member.setName(memberDto.getName());	// 회원 이름
     	member.setNickName(memberDto.getNickName());	// 회원 닉네임
-    	member.setMemberId(memberDto.getMemberId());	// 회원 로그인 아이디
+    	member.setLoginId(memberDto.getLoginId());	// 회원 로그인 아이디
     	member.setEmail(memberDto.getEmail());	// 회원 이메일
     	member.setPhone(memberDto.getPhone());	// 회원 전화번호
     	member.setHintA(memberDto.getHintA());	// 회원 전화번호
