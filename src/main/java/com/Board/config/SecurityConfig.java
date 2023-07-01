@@ -25,7 +25,7 @@ public class SecurityConfig {
 		http.formLogin()
 		.loginPage("/member/login")		// 로그인 페이지 url설정
 		.defaultSuccessUrl("/")				// 로그인 성공 시 이동 할 페이지
-		.usernameParameter("memberId")			// 로그인 시 사용 할 파라메터 이름
+		.usernameParameter("loginId")			// 로그인 시 사용 할 파라메터 이름
 		.passwordParameter("password")
 		.loginProcessingUrl("/login")
 		.failureUrl("/member/login/error")	// 로그인 실패 시 이동 할 url
@@ -38,7 +38,7 @@ public class SecurityConfig {
 	    http
 	        .authorizeHttpRequests((authz) -> authz
 	            .requestMatchers("/css/**", "/js/**", "/images/**").permitAll() // 모든 사용자가 로그인(인증) 없이 접근할 수 있도록 설정
-	            .requestMatchers("/intro", "/member/**", "/admin/join", "/admin/new", "/find/**").permitAll() // 모든 사용자가 로그인(인증) 없이 접근할 수 있도록 설정
+	            .requestMatchers("/main", "/member/**", "/admin/join", "/admin/new", "/find/**").permitAll() // 모든 사용자가 로그인(인증) 없이 접근할 수 있도록 설정
 	            .requestMatchers("/admin/**").hasRole("ADMIN") // '/admin'으로 시작하는 경로 페이지는 role이 ADMIN인 사용자만 접근 가능하도록 설정
 	            .anyRequest().authenticated()); // 그 외의 페이지는 모두 로그인(인증)을 받아야 함
 	    

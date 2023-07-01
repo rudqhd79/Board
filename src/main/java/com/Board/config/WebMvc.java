@@ -11,7 +11,8 @@ public class WebMvc implements WebMvcConfigurer {
 	
 	// application properties에 있는 uploadPath라는 명칭에 파일 경로를 입력한다
 	// @Value는 경로 값을 가져온다
-	@Value("${uploadPath}")
+	// autowired가 주입되지 않아 직접 application.properties에 있는 값을 가져왔다
+	@Value("${uploadPath:C:\\Board}")
 	String uploadPath;
 
 	// 정적 리소스의 위치와 요청 경로간의 매핑 설정 가능
@@ -22,10 +23,7 @@ public class WebMvc implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/images/**")
-		.addResourceLocations("file:/src/", "/resources/")
+		.addResourceLocations("file:/src/", "/resources/") // 절대 경로보단 상대 경로로
 		.addResourceLocations(uploadPath);
 	}
-	
-	
-
 }
